@@ -1,0 +1,156 @@
+Activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="184dp"
+        android:text="Enter number"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="165dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="78dp"
+        android:layout_height="38dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginLeft="59dp"
+        android:layout_marginTop="260dp"
+        android:text="Answer"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/answer"
+        android:layout_width="186dp"
+        android:layout_height="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="256dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:textSize="20dp"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <RadioButton
+        android:id="@+id/sum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginBottom="264dp"
+        android:text="sum of all num" />
+
+    <RadioButton
+        android:id="@+id/avg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="39dp"
+        android:layout_marginRight="39dp"
+        android:layout_marginBottom="260dp"
+        android:text="Average of all num" />
+
+</RelativeLayout>
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MainActivity.java
+
+package com.example.averageandsum;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
+public class MainActivity extends AppCompatActivity {
+    EditText number;
+    TextView answer;
+    RadioButton sum,average;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        number=findViewById(R.id.number);
+        answer=findViewById(R.id.answer);
+        sum=findViewById(R.id.sum);
+        average=findViewById(R.id.avg);
+
+        sum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String NoHolder=number.getText().toString();
+                int sum=0;
+                for(int i=0; i<NoHolder.length(); i++) {
+                    char temp = NoHolder.charAt(i);
+                    if (Character.isDigit(temp)) {
+                        int b = Integer.parseInt(String.valueOf(temp));
+                        sum=sum+b;
+                    }
+                }
+                answer.setText(String.valueOf(sum));
+
+            }
+        });
+        average.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String NoHolder=number.getText().toString();
+                int sum=0;
+                for(int i=0; i<NoHolder.length(); i++) {
+                    char temp = NoHolder.charAt(i);
+                    if (Character.isDigit(temp)) {
+                        int b = Integer.parseInt(String.valueOf(temp));
+                        sum=sum+b;
+                    }
+                }
+                int avg=sum/NoHolder.length();
+                answer.setText(String.valueOf(avg));
+
+            }
+
+        });
+    }
+}
